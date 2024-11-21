@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #efffdf;
+}
+
+@font-face {
+  font-family: "Nohemi";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/Nohemi-ExtraBold.ttf");
+}
