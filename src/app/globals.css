@@ -4,6 +4,7 @@
 
 body {
   background-color: #efffdf;
+  height: 100%;
 }
 
 @font-face {
@@ -12,4 +13,20 @@ body {
   font-weight: 400;
   font-display: swap;
   src: url("/fonts/Nohemi-ExtraBold.ttf");
+}
+
+@font-face {
+  font-family: "General Medium";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/GeneralSans-Medium.ttf");
+}
+
+@font-face {
+  font-family: "General Semibold";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/GeneralSans-Semibold.ttf");
 }
