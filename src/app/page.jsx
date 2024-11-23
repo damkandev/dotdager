@@ -11,6 +11,8 @@ import CardVideo from "@/components/LatestVideos";
 import Link from "next/link";
 import Lenis from "@studio-freight/lenis"; // Importa la librería
 import { useEffect } from "react";
+import gsap from "gsap";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import {
   FaInstagram,
   FaTiktok,
@@ -20,6 +22,7 @@ import {
   FaSpotify,
 } from "react-icons/fa";
 import Puto from "@/sections/Puto";
+gsap.registerPlugin(ScrollToPlugin); // Registramos el plugin
 
 export default function Home() {
   useEffect(() => {
@@ -63,7 +66,7 @@ export default function Home() {
             </Paragrah>
           </div>
           <div className="flex justify-center md:justify-start mt-4 space-x-4">
-            <Button className="bg-primary text-claro" href="#">
+            <Button className="bg-primary text-claro" href="#sobre-mi">
               Ver más{" "}
               <Emoji
                 emoji="flushed"
@@ -75,7 +78,7 @@ export default function Home() {
             </Button>
             <Button
               className="bg-secondary ml-2 text-primary"
-              href="https://jorshbg.dev/"
+              href="https://jorshbg.dev/" 
             >
               Chau
             </Button>
