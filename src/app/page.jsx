@@ -10,11 +10,12 @@ import Image from "next/image";
 import CardVideo from "@/components/LatestVideos";
 import Link from "next/link";
 import Lenis from "@studio-freight/lenis"; // Importa la librería
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import ScrollReveal from "scrollreveal";
 import Chat from "@/components/Chat";
+import ContadorDePepinos from "@/components/ContadorDePepinos";
 import {
   FaInstagram,
   FaTiktok,
@@ -27,6 +28,13 @@ import Puto from "@/sections/Puto";
 gsap.registerPlugin(ScrollToPlugin); // Registramos el plugin
 
 export default function Home() {
+  const [showPepinoText, setShowPepinoText] = useState(false);
+  const [pepinoCount, setPepinoCount] = useState(0);
+
+  const handlePepinoDetected = (count) => {
+    setShowPepinoText(true);
+    setPepinoCount(count);
+  };
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2, // Duración del desplazamiento
@@ -286,7 +294,13 @@ export default function Home() {
         className="chat h-screen w-auto flex flex-col md:flex-row justify-center items-center space-x-6 mt-[3rem] md:mt-0"
         id="chat"
       >
-        <Chat height={600} width="30%" channel="dagerxiv" className="order-2" />
+        <Chat
+          height={600}
+          width="30%"
+          channel="dagerxiv"
+          className="order-2"
+          onPepinoDetected={handlePepinoDetected}
+        />
 
         {/* Contenedor de texto */}
         <div className="order-1 md:order-1 text-center md:text-left md:w-1/2 flex flex-col items-center md:items-start space-y-4">
@@ -295,8 +309,14 @@ export default function Home() {
           </Title>
 
           <Paragrah className="text-xl text-left text-primary font-General-Medium pt-0 mt-0 md:max-w-[50rem]">
-            Los estoy viendo a todos, eh
+            Pone tu pepino en el chat, y ve como se correra el contador.
           </Paragrah>
+          {showPepinoText && (
+            <Paragrah className="text-xl text-left text-primary font-General-Medium pt-0 mt-0 md:max-w-[50rem]">
+              ¡Pepino detectado en el chat!
+            </Paragrah>
+          )}
+          <ContadorDePepinos count={pepinoCount} />
         </div>
       </section>
     </div>

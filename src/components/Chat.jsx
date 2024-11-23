@@ -1,8 +1,10 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import VanillaTilt from "vanilla-tilt"; // Importar VanillaTilt
+import tmi from "tmi.js"; // Importar tmi.js
 
-function Chat({ height, width, channel }) {
+function Chat({ height, width, channel, onPepinoDetected }) {
   const tiltRef = useRef(null); // Crear una referencia para aplicar VanillaTilt
+  const [pepinoCount, setPepinoCount] = useState(0); // Estado para contar las menciones de "pepino"
 
   useEffect(() => {
     // Inicializar VanillaTilt en el div contenedor
@@ -24,6 +26,25 @@ function Chat({ height, width, channel }) {
     };
   }, []);
 
+  useEffect(() => {
+    const client = new tmi.Client({
+      channels: [channel],
+    });
+
+    client.connect();
+
+    client.on("message", (channel, tags, message, self) => {
+      if (message.toLowerCase().includes("pepino")) {
+        setPepinoCount((prevCount) => prevCount + 1); // Incrementar el contador
+        onPepinoDetected(pepinoCount + 1); // Pasar el nuevo contador al componente padre
+      }
+    });
+
+    return () => {
+      client.disconnect();
+    };
+  }, [channel, onPepinoDetected, pepinoCount]);
+
   return (
     <div
       ref={tiltRef} // Asignar la referencia para aplicar VanillaTilt
@@ -40,6 +61,9 @@ function Chat({ height, width, channel }) {
         title="Chat de Twitch"
         className="rounded-xl"
       ></iframe>
+      <div className="pepino-count">
+        Pepino count: {pepinoCount} {/* Mostrar el contador */}
+      </div>
     </div>
   );
 }
