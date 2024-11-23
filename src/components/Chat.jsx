@@ -52,15 +52,15 @@ function Chat({ height, width, channel, onPepinoDetected }) {
     <div
       ref={tiltRef} // Asignar la referencia para aplicar VanillaTilt
       style={{ height, width }}
-      className="rounded-xl overflow-hidden"
+      className=" overflow-hidden mt-[13rem]"
     >
-      <div className="p-2 bg-[#efffdf] border-2 border-primary text-primary font-bold mb-2">
+      <div className="p-2 bg-transparent rounded-xl border-2 border-primary text-primary font-bold mb-2">
         <ContadorDePepinos count={pepinoCount} />{" "}
         {/* Usar el componente ContadorDePepinos */}
       </div>
-      <div className="chat-messages p-2 bg-[#efffdf] border-2 border-primary text-primary h-full overflow-y-auto">
+      <div className="chat-messages rounded-lg p-2 bg-[#efffdf] border-2 border-primary text-primary h-[20rem] overflow-y-auto">
         {messages.map((msg, index) => (
-          <div key={index} className="chat-message mb-2">
+          <div key={index} className="chat-message mb-2 ">
             <span className="chat-user font-General-Semibold text-primary">
               {msg.tags["display-name"]}:
             </span>{" "}

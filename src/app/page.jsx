@@ -286,7 +286,7 @@ export default function Home() {
         </Paragrah>
       </section>
       <section
-        className="h-screen w-auto flex flex-col md:flex-row justify-center items-center space-x-6 mt-[3rem] md:mt-0"
+        className="h-screen w-auto flex flex-col md:flex-row justify-center items-center space-y-6 md:space-y-0 md:space-x-6"
         id="musica"
       >
         <Chat
