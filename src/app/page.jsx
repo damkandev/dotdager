@@ -10,9 +10,10 @@ import Image from "next/image";
 import CardVideo from "@/components/LatestVideos";
 import Link from "next/link";
 import Lenis from "@studio-freight/lenis"; // Importa la librería
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import Chat from "@/components/Chat";
 import {
   FaInstagram,
   FaTiktok,
@@ -25,6 +26,11 @@ import Puto from "@/sections/Puto";
 gsap.registerPlugin(ScrollToPlugin); // Registramos el plugin
 
 export default function Home() {
+  const [showPepinoText, setShowPepinoText] = useState(false);
+
+  const handlePepinoDetected = () => {
+    setShowPepinoText(true);
+  };
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2, // Duración del desplazamiento
@@ -78,7 +84,7 @@ export default function Home() {
             </Button>
             <Button
               className="bg-secondary ml-2 text-primary"
-              href="https://jorshbg.dev/" 
+              href="https://jorshbg.dev/"
             >
               Chau
             </Button>
@@ -278,6 +284,34 @@ export default function Home() {
         <Paragrah className="text-xl text-left text-primary font-General-Medium pt-0 mt-0 md:max-w-[50rem]">
           Seguime o hay tabla
         </Paragrah>
+      </section>
+      <section
+        className="h-screen w-auto flex flex-col md:flex-row justify-center items-center space-x-6 mt-[3rem] md:mt-0"
+        id="musica"
+      >
+        <Chat
+          height={600}
+          width="30%"
+          channel="dagerxiv"
+          className="order-2"
+          onPepinoDetected={handlePepinoDetected}
+        />
+
+        {/* Contenedor de texto */}
+        <div className="order-1 md:order-1 text-center md:text-left md:w-1/2 flex flex-col items-center md:items-start space-y-4">
+          <Title className="uppercase text-[4rem] md:text-[6rem] leading-none text-left max-w-[30rem] md:max-w-[50rem]">
+            Mi chat
+          </Title>
+
+          <Paragrah className="text-xl text-left text-primary font-General-Medium pt-0 mt-0 md:max-w-[50rem]">
+            Pone pepino en el chat y ve la magia...
+          </Paragrah>
+          {showPepinoText && (
+            <Paragrah className="text-xl text-left text-primary font-General-Medium pt-0 mt-0 md:max-w-[50rem]">
+              ¡Pepino detectado en el chat!
+            </Paragrah>
+          )}
+        </div>
       </section>
     </div>
   );
