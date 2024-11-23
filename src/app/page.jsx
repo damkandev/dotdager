@@ -304,7 +304,7 @@ export default function Home() {
           </Title>
 
           <Paragrah className="text-xl text-left text-primary font-General-Medium pt-0 mt-0 md:max-w-[50rem]">
-            Pone pepino en el chat y ve la magia...
+            Pone pepino en el chat de twitch y ve la magia....
           </Paragrah>
           {showPepinoText && (
             <Paragrah className="text-xl text-left text-primary font-General-Medium pt-0 mt-0 md:max-w-[50rem]">
