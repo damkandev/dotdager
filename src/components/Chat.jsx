@@ -5,6 +5,7 @@ import tmi from "tmi.js"; // Importar tmi.js
 function Chat({ height, width, channel, onPepinoDetected }) {
   const tiltRef = useRef(null); // Crear una referencia para aplicar VanillaTilt
   const [pepinoCount, setPepinoCount] = useState(0); // Estado para contar las menciones de "pepino"
+  const [hostname, setHostname] = useState("");
 
   useEffect(() => {
     // Inicializar VanillaTilt en el div contenedor
@@ -45,22 +46,30 @@ function Chat({ height, width, channel, onPepinoDetected }) {
     };
   }, [channel, onPepinoDetected, pepinoCount]);
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setHostname(window.location.hostname);
+    }
+  }, []);
+
   return (
     <div
       ref={tiltRef} // Asignar la referencia para aplicar VanillaTilt
       style={{ height, width }}
       className="rounded-xl overflow-hidden"
     >
-      <iframe
-        src={`https://www.twitch.tv/embed/${channel}/chat?parent=${window.location.hostname}&theme=dark`}
-        width="100%" // Ajusta al ancho del div contenedor
-        height="100%" // Ajusta al alto del div contenedor
-        frameBorder="0"
-        scrolling="no"
-        allowFullScreen="true"
-        title="Chat de Twitch"
-        className="rounded-xl"
-      ></iframe>
+      {hostname && (
+        <iframe
+          src={`https://www.twitch.tv/embed/${channel}/chat?parent=${hostname}&theme=dark`}
+          width="100%" // Ajusta al ancho del div contenedor
+          height="100%" // Ajusta al alto del div contenedor
+          frameBorder="0"
+          scrolling="no"
+          allowFullScreen="true"
+          title="Chat de Twitch"
+          className="rounded-xl"
+        ></iframe>
+      )}
       <div className="pepino-count">
         Pepino count: {pepinoCount} {/* Mostrar el contador */}
       </div>
