@@ -9,8 +9,6 @@ import ImageGhost from "@/components/ImageGhost";
 import Image from "next/image";
 import CardVideo from "@/components/LatestVideos";
 import Link from "next/link";
-import TitleScramble from "@/components/TitleScramble";
-import Navbar from "@/components/Navbar";
 import {
   FaInstagram,
   FaTiktok,
