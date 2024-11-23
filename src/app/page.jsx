@@ -9,6 +9,8 @@ import ImageGhost from "@/components/ImageGhost";
 import Image from "next/image";
 import CardVideo from "@/components/LatestVideos";
 import Link from "next/link";
+import Lenis from "@studio-freight/lenis"; // Importa la librería
+import { useEffect } from "react";
 import {
   FaInstagram,
   FaTiktok,
@@ -17,8 +19,29 @@ import {
   FaTwitch,
   FaSpotify,
 } from "react-icons/fa";
+import Puto from "@/sections/Puto";
 
 export default function Home() {
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2, // Duración del desplazamiento
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Efecto de suavizado
+      smoothWheel: true, // Activar desplazamiento suave con el mouse
+      smoothTouch: true, // Activar desplazamiento suave en dispositivos táctiles
+    });
+
+    // Animación de scroll suave
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy(); // Limpiar en el desmontaje del componente
+    };
+  }, []);
   return (
     <div className="min-h-screen mt-[6rem] md:mt-0 flex flex-col p-4">
       <section className="h-screen w-auto flex flex-col md:flex-row justify-center items-center space-x-6">
@@ -64,7 +87,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="h-screen w-auto flex flex-col md:flex-row justify-center items-center space-x-6 mt-[3rem] md:mt-0">
+      <section
+        className="h-screen w-auto flex flex-col md:flex-row justify-center items-center space-x-6 mt-[3rem] md:mt-0"
+        id="sobre-mi"
+      >
         {/* Contenedor de texto */}
         <div className="order-2 md:order-1 text-center md:text-left md:w-1/2 flex flex-col items-center md:items-start space-y-4">
           <Title className="uppercase text-[4rem] md:text-[6rem] leading-none text-left">
@@ -116,19 +142,14 @@ export default function Home() {
                 <Emoji height={24} width={24} emoji="books" />
               </Paragrah>
             </li>
-            <li>
-              <Paragrah className=" font-General-Medium text-primary text-lg sm:text-xl">
-                Si eres dev, ve la{" "}
-                <span className="font-General-Semibold">
-                  consola de la página
-                </span>
-              </Paragrah>
-            </li>
           </ul>
         </div>
         <ImageGhost className="mt-[2rem] md:mt-0 order-2 md:order-1 h-full md:h-[40rem] w-full md:w-[40rem]" />
       </section>
-      <section className="h-screen w-auto flex flex-col md:flex-row justify-center items-center space-x-6 mt-[3rem] md:mt-0">
+      <section
+        className="h-screen w-auto flex flex-col md:flex-row justify-center items-center space-x-6 mt-[3rem] md:mt-0"
+        id="musica"
+      >
         <iframe
           className="rounded-sm w-full md:w-[40%] ml-2 order-2 mt-10"
           src="https://open.spotify.com/embed/artist/6bkClBMJd4qKxJp0J5vHsz?utm_source=generator"
@@ -155,7 +176,10 @@ export default function Home() {
           </Paragrah>
         </div>
       </section>
-      <section className="flex flex-col items-center justify-center w-full py-10 h-screen">
+      <section
+        className="flex flex-col items-center justify-center w-full py-10 h-screen"
+        id="videos"
+      >
         <Title className="uppercase text-[4rem] md:text-[4rem] leading-none text-center ">
           Mis ultimas obras de arte
         </Title>
@@ -214,8 +238,11 @@ export default function Home() {
           Poné tu correo acá asi te hincho más las bolas 🥚🥚
         </Paragrah>
       </section>
-      <section className="flex flex-col items-center justify-center w-full py-10 h-screen">
-        <Title className="uppercase text-[4rem] md:text-[7rem] leading-none text-center ">
+      <section
+        id="final"
+        className="flex flex-col items-center justify-center w-full py-10 h-screen"
+      >
+        <Title className="title-animate uppercase text-[4rem] md:text-[7rem] leading-none text-center">
           PUTO EL QUE LEE
         </Title>
         <div className="text-primary flex px-4">
@@ -241,41 +268,6 @@ export default function Home() {
               <path
                 fill="currentColor"
                 d="M19.27 5.33C17.94 4.71 16.5 4.26 15 4a.1.1 0 0 0-.07.03c-.18.33-.39.76-.53 1.09a16.1 16.1 0 0 0-4.8 0c-.14-.34-.35-.76-.54-1.09c-.01-.02-.04-.03-.07-.03c-1.5.26-2.93.71-4.27 1.33c-.01 0-.02.01-.03.02c-2.72 4.07-3.47 8.03-3.1 11.95c0 .02.01.04.03.05c1.8 1.32 3.53 2.12 5.24 2.65c.03.01.06 0 .07-.02c.4-.55.76-1.13 1.07-1.74c.02-.04 0-.08-.04-.09c-.57-.22-1.11-.48-1.64-.78c-.04-.02-.04-.08-.01-.11c.11-.08.22-.17.33-.25c.02-.02.05-.02.07-.01c3.44 1.57 7.15 1.57 10.55 0c.02-.01.05-.01.07.01c.11.09.22.17.33.26c.04.03.04.09-.01.11c-.52.31-1.07.56-1.64.78c-.04.01-.05.06-.04.09c.32.61.68 1.19 1.07 1.74c.03.01.06.02.09.01c1.72-.53 3.45-1.33 5.25-2.65c.02-.01.03-.03.03-.05c.44-4.53-.73-8.46-3.1-11.95c-.01-.01-.02-.02-.04-.02M8.52 14.91c-1.03 0-1.89-.95-1.89-2.12s.84-2.12 1.89-2.12c1.06 0 1.9.96 1.89 2.12c0 1.17-.84 2.12-1.89 2.12m6.97 0c-1.03 0-1.89-.95-1.89-2.12s.84-2.12 1.89-2.12c1.06 0 1.9.96 1.89 2.12c0 1.17-.83 2.12-1.89 2.12"
-              ></path>
-            </svg>
-          </Link>
-          <Link
-            href="https://www.youtube.com/redirect?event=channel_description&redir_token=QUFFLUhqbGtpWWlCeXJMM2JnTFhGYUtEUnFfSGpZemxCQXxBQ3Jtc0ttVVAzTWdocVI1RjktXzlHbUtKTTZWZkNiWVRiTFA3UEsweEJ2WUR0ekxYSnpUVDZyemxqLTZlTm9KVmNZWUd3a0FKMzFYejNQZ1hiM2EwOGgxNTlWYkIzbkFsLUxrdDlORkpUbnJGS3NXckxYT3NWaw&q=https%3A%2F%2Fgithub.com%2FMarianoVilla"
-            className="mx-2"
-          >
-            <FaGithub size={35} />
-          </Link>
-          <Link
-            href="https://www.youtube.com/redirect?event=channel_description&redir_token=QUFFLUhqbjhmeUx5V1lLQmY2NGE2VUVqeGFBbm51ZTJsd3xBQ3Jtc0tuZzJlaHEwQ0dqdkpIQzVSQXM0T2tDVkJMRHpnZk9JTnJaUGpwUUtvTW9sbzBRd1F5bG5ZbndjandHeGVlX3NZckJPVkhENldlb2toaGJxekJPamR6QXdhd20xNGpLX0xvUDIxLVYyRl9wWThfTXNaVQ&q=https%3A%2F%2Fwww.twitch.tv%2Fdagerxiv"
-            className="mx-2"
-          >
-            <FaTwitch size={35} />
-          </Link>
-          <Link
-            href="https://www.youtube.com/redirect?event=channel_description&redir_token=QUFFLUhqbDNXWHprUVdGQjBXb0pFTnF1WTN4MUhKM3ZkQXxBQ3Jtc0ttak5KbE5KcnhKR0lDcmFfdXF0TXNoSTFmaUxXTElMQWZvZjZwaXZBaGYxV2FQakRsNS16NnQzMVU0b3NqS3A0Z0lzNkZmeU4zVTBFSWZxbWpuYzNtVGZsYWFDV1JEMzFMVmswV0hweUd0Smk1c3pKMA&q=https%3A%2F%2Fopen.spotify.com%2Fartist%2F6bkClBMJd4qKxJp0J5vHsz%3Fsi%3DmbfNHqvBT9SKSQ-ZNhXHJg%26nd%3D1"
-            className="mx-2"
-          >
-            <FaSpotify size={35} />
-          </Link>
-          <Link
-            href="https://www.youtube.com/redirect?event=channel_description&redir_token=QUFFLUhqbFd1U1kxdURCby1zTnYwdDNYQnI1TWVFQURJUXxBQ3Jtc0tuYUM4RTFLZHo1emJhc1pYMFd6aUFlTTlpLWNpWUc0VnpURXFnRkZSY1RMTUZIbWhHcmtiUF9uNXFud3NKLVBjeWdTNG9jN24zemJ1RndyeC1sZm5nWTI5UUF6UVlicjRuMk1YdXo4bTlhTHpUclVVcw&q=https%3A%2F%2Ftwitter.com%2FDager_32"
-            className="mx-2"
-          >
-            {/* <FaXTwitter size={35} /> */}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="35px"
-              height="35px"
-              viewBox="0 0 16 16"
-            >
-              <path
-                fill="currentColor"
-                d="M9.294 6.928L14.357 1h-1.2L8.762 6.147L5.25 1H1.2l5.31 7.784L1.2 15h1.2l4.642-5.436L10.751 15h4.05zM7.651 8.852l-.538-.775L2.832 1.91h1.843l3.454 4.977l.538.775l4.491 6.47h-1.843z"
               ></path>
             </svg>
           </Link>
