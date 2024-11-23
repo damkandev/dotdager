@@ -2,7 +2,8 @@
 import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 
-function ImageGhost() {
+function ImageGhost({ className }) {
+  // Aceptamos className como prop
   const pfpRef = useRef(null); // Referencia para dager_pfp
   const pepinosRef = useRef(null); // Referencia para dager_pepinos
 
@@ -21,7 +22,7 @@ function ImageGhost() {
 
   return (
     <div
-      className="relative flex justify-center items-center w-full h-full" // Aseguramos que el contenedor ocupe todo el espacio disponible
+      className={`relative flex justify-center items-center w-full h-full ${className}`} // Aplica el className recibido
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -30,14 +31,14 @@ function ImageGhost() {
         ref={pfpRef}
         src="/images/dager_pfp.png"
         alt="Dager pfp"
-        className="absolute top-0 left-0 w-full h-full object-cover z-10" // Se asegura que la imagen cubra todo el espacio
+        className="absolute top-0 left-0 w-full h-full object-contain z-10" // Asegura que la imagen cubra todo el espacio sin deformarse
       />
       {/* Imagen de pepinos */}
       <img
         ref={pepinosRef}
         src="/images/dager_pepinos.png"
         alt="Dager pepinos"
-        className="absolute top-0 left-0 w-full h-full object-cover z-0" // Igualmente, cubre todo el espacio
+        className="absolute top-0 left-0 w-full h-full object-contain z-0" // Igualmente, cubre todo el espacio
       />
     </div>
   );

@@ -48,19 +48,26 @@ function PickleJar() {
   return (
     <div className="relative flex justify-center items-center">
       {/* Contenedor de la jarra y el pepino con flexbox */}
-      <div className="relative flex justify-center items-center mt-5 md:-mt-12 ">
+      <div className="relative flex justify-center items-center mt-5 md:-mt-12">
         {/* Jarra */}
         <img
-          className="w-[300px] md:w-[400px] cursor-pointer z-10" // Ajuste de tamaño responsivo para la jarra
+          className="w-[300px] md:w-[400px] cursor-pointer z-30" // Ajuste de tamaño responsivo para la jarra
           src="/images/jarra.png"
           alt="jarra"
           onClick={handleClick} // Detectar el clic en la imagen
         />
+
         <img
           ref={pickleRef}
-          className="absolute mt-[5rem] md:mt-[4rem] cursor-pointer w-[220px] md:w-[250px] z-0" // Ajuste de tamaño para el pepino
+          className="absolute mt-[5rem] md:mt-[4rem] cursor-pointer w-[220px] md:w-[350px] z-10" // Ajuste de tamaño para el pepino
           src="/images/pickle_dotdager.png"
           alt="pickle"
+        />
+
+        <img
+          className="absolute top-0 left-0 w-[300px] md:w-[400px] z-0 opacity-30 " // Alinea el fondo con la jarra
+          src="/images/jarra_bg.png"
+          alt="jarra background"
         />
       </div>
 

@@ -61,7 +61,7 @@ function HoverText({
     <p
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className="font-General-Medium text-primary text-xl"
+      className="font-General-Medium text-primary text-lg sm:text-xl"
     >
       {textBefore}{" "}
       <span
