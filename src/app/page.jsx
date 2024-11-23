@@ -13,6 +13,8 @@ import Lenis from "@studio-freight/lenis"; // Importa la librería
 import { useEffect } from "react";
 import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import ScrollReveal from "scrollreveal";
+import Chat from "@/components/Chat";
 import {
   FaInstagram,
   FaTiktok,
@@ -78,7 +80,7 @@ export default function Home() {
             </Button>
             <Button
               className="bg-secondary ml-2 text-primary"
-              href="https://jorshbg.dev/" 
+              href="https://jorshbg.dev/"
             >
               Chau
             </Button>
@@ -91,7 +93,7 @@ export default function Home() {
       </section>
 
       <section
-        className="h-screen w-auto flex flex-col md:flex-row justify-center items-center space-x-6 mt-[3rem] md:mt-0"
+        className="sobre-mi h-screen w-auto flex flex-col md:flex-row justify-center items-center space-x-6 mt-[3rem] md:mt-0"
         id="sobre-mi"
       >
         {/* Contenedor de texto */}
@@ -150,7 +152,7 @@ export default function Home() {
         <ImageGhost className="mt-[2rem] md:mt-0 order-2 md:order-1 h-full md:h-[40rem] w-full md:w-[40rem]" />
       </section>
       <section
-        className="h-screen w-auto flex flex-col md:flex-row justify-center items-center space-x-6 mt-[3rem] md:mt-0"
+        className="musica h-screen w-auto flex flex-col md:flex-row justify-center items-center space-x-6 mt-[3rem] md:mt-0"
         id="musica"
       >
         <iframe
@@ -170,6 +172,7 @@ export default function Home() {
             src="/images/sticker.png"
             width={600}
             height={600}
+            alt="Sticker de Dager"
             className="h-20 md:h-40 w-20 md:w-40 md:mt-[50em] absolute ml-[20rem] "
           />
           <Paragrah className="text-xl text-left text-primary font-General-Medium pt-0 mt-0 md:max-w-[50rem]">
@@ -180,7 +183,7 @@ export default function Home() {
         </div>
       </section>
       <section
-        className="flex flex-col items-center justify-center w-full py-10 h-screen"
+        className="videos flex flex-col items-center justify-center w-full py-10 h-screen"
         id="videos"
       >
         <Title className="uppercase text-[4rem] md:text-[4rem] leading-none text-center ">
@@ -243,7 +246,7 @@ export default function Home() {
       </section>
       <section
         id="final"
-        className="flex flex-col items-center justify-center w-full py-10 h-screen"
+        className="flex flex-col items-center justify-center w-full py-10 h-auto"
       >
         <Title className="title-animate uppercase text-[4rem] md:text-[7rem] leading-none text-center">
           PUTO EL QUE LEE
@@ -278,6 +281,23 @@ export default function Home() {
         <Paragrah className="text-xl text-left text-primary font-General-Medium pt-0 mt-0 md:max-w-[50rem]">
           Seguime o hay tabla
         </Paragrah>
+      </section>
+      <section
+        className="chat h-screen w-auto flex flex-col md:flex-row justify-center items-center space-x-6 mt-[3rem] md:mt-0"
+        id="chat"
+      >
+        <Chat height={600} width="30%" channel="dagerxiv" className="order-2" />
+
+        {/* Contenedor de texto */}
+        <div className="order-1 md:order-1 text-center md:text-left md:w-1/2 flex flex-col items-center md:items-start space-y-4">
+          <Title className="uppercase text-[4rem] md:text-[6rem] leading-none text-left max-w-[30rem] md:max-w-[50rem]">
+            Mi chat
+          </Title>
+
+          <Paragrah className="text-xl text-left text-primary font-General-Medium pt-0 mt-0 md:max-w-[50rem]">
+            Los estoy viendo a todos, eh
+          </Paragrah>
+        </div>
       </section>
     </div>
   );

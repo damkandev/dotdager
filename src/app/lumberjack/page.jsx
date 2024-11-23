@@ -2,8 +2,9 @@
 
 export default function Lumber() {
   return (
-    <div className="">
+    <div className="flex items-center justify-center min-h-screen">
       <iframe
+        className="rounded-lg"
         title="Lumber Jack Game"
         src="https://tbot.xyz/lumber/"
         width="500"
