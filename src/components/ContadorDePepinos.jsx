@@ -3,27 +3,15 @@ import { gsap } from "gsap";
 
 const ContadorDePepinos = ({ count }) => {
   const countRef = useRef(null);
-<<<<<<< HEAD
-  const prevCountRef = useRef(count);
-=======
->>>>>>> 706fd18c4f9dd8a0810ab1606135155ef907128c
 
   useEffect(() => {
     if (countRef.current) {
       gsap.fromTo(
         countRef.current,
-<<<<<<< HEAD
-        { y: 20, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.5 }
-      );
-    }
-    prevCountRef.current = count;
-=======
         { y: -20, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.3 }
       );
     }
->>>>>>> 706fd18c4f9dd8a0810ab1606135155ef907128c
   }, [count]);
 
   return (

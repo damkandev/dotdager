@@ -13,13 +13,9 @@ import Lenis from "@studio-freight/lenis"; // Importa la librería
 import { useEffect, useState } from "react";
 import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
-<<<<<<< HEAD
-import Chat from "@/components/Chat";
-=======
 import ScrollReveal from "scrollreveal";
 import Chat from "@/components/Chat";
 import ContadorDePepinos from "@/components/ContadorDePepinos";
->>>>>>> 706fd18c4f9dd8a0810ab1606135155ef907128c
 import {
   FaInstagram,
   FaTiktok,
@@ -33,17 +29,11 @@ gsap.registerPlugin(ScrollToPlugin); // Registramos el plugin
 
 export default function Home() {
   const [showPepinoText, setShowPepinoText] = useState(false);
-<<<<<<< HEAD
-
-  const handlePepinoDetected = () => {
-    setShowPepinoText(true);
-=======
   const [pepinoCount, setPepinoCount] = useState(0);
 
   const handlePepinoDetected = (count) => {
     setShowPepinoText(true);
     setPepinoCount(count);
->>>>>>> 706fd18c4f9dd8a0810ab1606135155ef907128c
   };
   useEffect(() => {
     const lenis = new Lenis({
@@ -301,13 +291,8 @@ export default function Home() {
         </Paragrah>
       </section>
       <section
-<<<<<<< HEAD
-        className="h-screen w-auto flex flex-col md:flex-row justify-center items-center space-x-6 mt-[3rem] md:mt-0"
-        id="musica"
-=======
         className="chat h-screen w-auto flex flex-col md:flex-row justify-center items-center space-x-6 mt-[3rem] md:mt-0"
         id="chat"
->>>>>>> 706fd18c4f9dd8a0810ab1606135155ef907128c
       >
         <Chat
           height={600}
@@ -324,21 +309,14 @@ export default function Home() {
           </Title>
 
           <Paragrah className="text-xl text-left text-primary font-General-Medium pt-0 mt-0 md:max-w-[50rem]">
-<<<<<<< HEAD
-            Pone pepino en el chat y ve la magia...
-=======
             Pone tu pepino en el chat, y ve como se correra el contador.
->>>>>>> 706fd18c4f9dd8a0810ab1606135155ef907128c
           </Paragrah>
           {showPepinoText && (
             <Paragrah className="text-xl text-left text-primary font-General-Medium pt-0 mt-0 md:max-w-[50rem]">
               ¡Pepino detectado en el chat!
             </Paragrah>
           )}
-<<<<<<< HEAD
-=======
           <ContadorDePepinos count={pepinoCount} />
->>>>>>> 706fd18c4f9dd8a0810ab1606135155ef907128c
         </div>
       </section>
     </div>
