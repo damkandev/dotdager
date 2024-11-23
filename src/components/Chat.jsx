@@ -47,12 +47,6 @@ function Chat({ height, width, channel, onPepinoDetected }) {
     };
   }, [channel, onPepinoDetected, pepinoCount]);
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      setHostname(window.location.hostname);
-    }
-  }, []);
-
   return (
     <div
       ref={tiltRef} // Asignar la referencia para aplicar VanillaTilt
@@ -61,7 +55,7 @@ function Chat({ height, width, channel, onPepinoDetected }) {
     >
       {hostname && (
         <iframe
-          src={`https://www.twitch.tv/embed/${channel}/chat?parent=${hostname}&theme=dark`}
+          src={`https://www.twitch.tv/embed/${channel}/chat`}
           width="100%" // Ajusta al ancho del div contenedor
           height="100%" // Ajusta al alto del div contenedor
           frameBorder="0"
