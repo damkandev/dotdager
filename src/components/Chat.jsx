@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useRef, useState } from "react";
 import VanillaTilt from "vanilla-tilt"; // Importar VanillaTilt
 import tmi from "tmi.js"; // Importar tmi.js
